@@ -80,9 +80,8 @@ public class AVLTree {
 	private static Node checkIfUnbalanced(Node node) {
 		// This should update the height of the node first
 		// by adding one to the height of its tallest child.
-		// Then balance node if necessary, setting the value
-		// of node to the new balanced version, then return
-		// node.
+		// Then balance node if necessary, setting the variable
+		// node to the new balanced version, then return node.
 	}
 	
 	/**
