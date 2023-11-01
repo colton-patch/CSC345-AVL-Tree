@@ -15,7 +15,8 @@ public class AVLTree {
 	 * @return true if the value is found, false if not.
 	 */
 	public boolean search(int val) {
-	
+		// TODO
+		return false;
 	}
 	
 	/**
@@ -83,6 +84,8 @@ public class AVLTree {
 		// Then balance node if necessary, setting the value
 		// of node to the new balanced version, then return
 		// node.
+		// TODO
+		return node;
 	}
 	
 	/**
@@ -92,7 +95,9 @@ public class AVLTree {
 	 * @return the root of the new balanced subtree
 	 */
 	private static Node balance(Node node) {
-		
+		// TODO
+		return node;
+	
 	}
 	
 	/**
@@ -102,6 +107,8 @@ public class AVLTree {
 	 * @return the root of the rotated subtree
 	 */
 	private static Node rotateRight(Node node) {
+		// TODO
+		return node;
 		
 	}
 	
@@ -112,6 +119,8 @@ public class AVLTree {
 	 * @return the root of the rotated subtree
 	 */
 	private static Node rotateLeft(Node node) {
+		// TODO
+		return node;
 		
 	}
 	
