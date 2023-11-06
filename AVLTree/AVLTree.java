@@ -15,8 +15,21 @@ public class AVLTree {
 	 * @return true if the value is found, false if not.
 	 */
 	public boolean search(int val) {
-		// TODO
-		return false;
+	    return searchRecursive(root, val);
+	}
+
+	private boolean searchRecursive(Node node, int val) {
+	    if (node == null) {
+	        return false;
+	    }
+
+	    if (val == node.val) {
+	        return true; 
+	    } else if (val < node.val) {
+	        return searchRecursive(node.left, val); 
+	    } else {
+	        return searchRecursive(node.right, val);
+	    }
 	}
 	
 	/**
@@ -111,8 +124,8 @@ public class AVLTree {
 		Node y = x.right;
 		x.right = h;
 		h.left = y;
-		h.height = 1+ Math.max(height(h.left), height(h.right));
-		x.height = 1+ Math.max(height(x.left), height(x.right));
+		computeHeight(h);
+		computeHeight(x);
 		return h;
 		
 	}
@@ -128,12 +141,19 @@ public class AVLTree {
 		Node y = x.left;
 		x.left = h;
 		h.right = y;
-		h.height = 1+ Math.max(height(h.left), height(h.right));
-		x.height = 1+ Math.max(height(x.left), height(x.right));
+		computeHeight(h);
+		computeHeight(x);
 		return h;
 		
 	}
 	
+	/*
+	 * 
+	 */
+	private static void computeHeight(Node h) {
+		h.height = 1 + Math.max(height(h.left), height(h.right));
+	}
+
 	/*
 	 * 
 	 */
