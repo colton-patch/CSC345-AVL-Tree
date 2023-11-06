@@ -106,21 +106,29 @@ public class AVLTree {
 	 * @param node - the subtree to rotate
 	 * @return the root of the rotated subtree
 	 */
-	private static Node rotateRight(Node node) {
-		// TODO
-		return node;
+	private static Node rotateRight(Node h) {
+		Node x = h.left;
+		h.left = x.right;
+		x.right = h;
+		computeHeight(h)
+		computeHeight(x)
+		return h;
 		
 	}
-	
+
 	/**
 	 * rotateLeft(Node node) - rotates the given subtree left
 	 * 
 	 * @param node - the subtree to rotate
 	 * @return the root of the rotated subtree
 	 */
-	private static Node rotateLeft(Node node) {
-		// TODO
-		return node;
+	private static Node rotateLeft(Node h) {
+		Node x = h.right;
+		h.right = x.left;
+		x.left = h;
+		computeHeight(h);
+		computeHeight(x);
+		return h;
 		
 	}
 	
