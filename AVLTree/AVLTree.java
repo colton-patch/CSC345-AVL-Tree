@@ -110,8 +110,8 @@ public class AVLTree {
 		Node x = h.left;
 		h.left = x.right;
 		x.right = h;
-		computeHeight(h)
-		computeHeight(x)
+		computeHeight(h);
+		computeHeight(x);
 		return h;
 		
 	}
@@ -130,6 +130,13 @@ public class AVLTree {
 		computeHeight(x);
 		return h;
 		
+	}
+	
+	/*
+	 * 
+	 */
+	private static void computeHeight(Node h) {
+		// TODO Auto-generated method stub
 	}
 	
 	//@Override
