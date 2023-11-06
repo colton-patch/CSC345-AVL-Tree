@@ -108,10 +108,11 @@ public class AVLTree {
 	 */
 	private static Node rotateRight(Node h) {
 		Node x = h.left;
-		h.left = x.right;
+		Node y = x.right;
 		x.right = h;
-		computeHeight(h);
-		computeHeight(x);
+		h.left = y;
+		h.height = 1+ Math.max(height(h.left), height(h.right));
+		x.height = 1+ Math.max(height(x.left), height(x.right));
 		return h;
 		
 	}
@@ -124,10 +125,11 @@ public class AVLTree {
 	 */
 	private static Node rotateLeft(Node h) {
 		Node x = h.right;
-		h.right = x.left;
+		Node y = x.left;
 		x.left = h;
-		computeHeight(h);
-		computeHeight(x);
+		h.right = y;
+		h.height = 1+ Math.max(height(h.left), height(h.right));
+		x.height = 1+ Math.max(height(x.left), height(x.right));
 		return h;
 		
 	}
@@ -135,10 +137,11 @@ public class AVLTree {
 	/*
 	 * 
 	 */
-	private static void computeHeight(Node h) {
-		// TODO Auto-generated method stub
+	private static int height(Node n) {
+		return n == null ? 0 : n.height;
 	}
-	
+
+
 	//@Override
 	public String toString() {
 		String str = getString(root);
