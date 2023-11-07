@@ -97,11 +97,23 @@ public class AVLTree {
 		// Then balance node if necessary, setting the value
 		// of node to the new balanced version, then return
 		// node.
-		computeHeight(node);	// update the height of the node
-		int balance = 0;
 		
+		// update the height of the node
+		computeHeight(node);
+		return balance(node);
+	}
+	
+	/**
+	 * balance(Node node) - Makes the given subtree balanced by rotating values.
+	 * 
+	 * @param node - the subtree to balance
+	 * @return the root of the new balanced subtree
+	 */
+	private static Node balance(Node node) {
+		int balance = 0;
 		if (node != null) {
-			balance = height(node.left) - height(node.right);	// retrieve balance factor
+			// retrieve balance factor
+			balance = height(node.left) - height(node.right);
 		}
 		// heavier on left
 		if (balance > 1) {
@@ -124,18 +136,6 @@ public class AVLTree {
 	        return rotateLeft(node);
 	    }
 		return node;
-	}
-	
-	/**
-	 * balance(Node node) - Makes the given subtree balanced by rotating values.
-	 * 
-	 * @param node - the subtree to balance
-	 * @return the root of the new balanced subtree
-	 */
-	private static Node balance(Node node) {
-		// TODO
-		return node;
-	
 	}
 	
 	/**
