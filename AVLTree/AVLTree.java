@@ -74,7 +74,7 @@ public class AVLTree {
 			this.root = new Node(newVal);
 			return;
 		}
-		recursiveInsert(this.root, newVal);
+		this.root = recursiveInsert(this.root, newVal);
 	}
 	
 	/**
@@ -96,7 +96,7 @@ public class AVLTree {
 	    } else if (newVal > node.val) {
 	        node.right = recursiveInsert(node.right, newVal);
 	    } else if (newVal == node.val) {
-	        throw new RuntimeException("Node " + newVal + "already exists");
+	        throw new RuntimeException("Node " + newVal + " already exists");
 	    }
 	    return checkIfUnbalanced(node);
 	}
@@ -109,12 +109,6 @@ public class AVLTree {
 	 * @param node - the root of the subtree to check
 	 */
 	private static Node checkIfUnbalanced(Node node) {
-		// This should update the height of the node first
-		// by adding one to the height of its tallest child.
-		// Then balance node if necessary, setting the value
-		// of node to the new balanced version, then return
-		// node.
-		
 		// update the height of the node
 		computeHeight(node);
 		return balance(node);
@@ -163,12 +157,11 @@ public class AVLTree {
 	 */
 	private static Node rotateRight(Node h) {
 		Node x = h.left;
-		Node y = x.right;
+		h.left = x.right;
 		x.right = h;
-		h.left = y;
 		computeHeight(h);
 		computeHeight(x);
-		return h;
+		return x;
 		
 	}
 
@@ -180,24 +173,29 @@ public class AVLTree {
 	 */
 	private static Node rotateLeft(Node h) {
 		Node x = h.right;
-		Node y = x.left;
+		h.right = x.left;
 		x.left = h;
-		h.right = y;
 		computeHeight(h);
 		computeHeight(x);
-		return h;
+		return x;
 		
 	}
 	
-	/*
+	/**
+	 * computeHeight(Node h) - sets the height value of the given node
+	 * 	to its correct value
 	 * 
+	 * @param h - node whose height to find
 	 */
 	private static void computeHeight(Node h) {
 		h.height = 1 + Math.max(height(h.left), height(h.right));
 	}
 
-	/*
+	/**
+	 * height(Node n) - Gives the height of the given node
 	 * 
+	 * @param n - node to get the height of
+	 * @return	- height of the node
 	 */
 	private static int height(Node n) {
 		if (n == null) {
@@ -212,6 +210,34 @@ public class AVLTree {
 		String str = getString(root);
 		return str;
 	}
+	
+	/**
+	 * printHierarchy() - prints the tree with a hierarchical notation.
+	 * 
+	 */
+	public void printHierarchy() {
+		printHierarchyRecursive(this.root, 0);
+    }
+
+	/**
+	 * printHierarchyRecursive(Node node, int depth) - Helper function to recursively
+	 * 	print the tree in hierarchical notation
+	 * 
+	 * @param node - node whose value to print
+	 * @param depth - the depth of the node
+	 */
+    private static void printHierarchyRecursive(Node node, int depth) {
+    	if (node == null) {
+    		return;
+    	}
+        for (int i = 0; i < depth; i++) {
+            System.out.print("  ");
+        }
+        System.out.println(node.val);
+
+        printHierarchyRecursive(node.left, depth + 1);
+        printHierarchyRecursive(node.right, depth + 1);
+    }
 	
 	/**
 	 * Returns the string representation of a node, by recursively

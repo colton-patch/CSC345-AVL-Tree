@@ -9,12 +9,17 @@ public class AVLTreeTest {
 		System.out.println("TEST 1");
 		AVLTree tree = new AVLTree();
 		for (int i = 0; i < 10; i++) {
-			int newVal = (int) (Math.random() * 100);
-			System.out.print("insert(" + newVal +") ");
-			tree.insert(newVal);
+			if (!tree.search(i)) {
+				int newVal = (int) (Math.random() * 100);
+				System.out.print("insert(" + newVal +") ");
+				tree.insert(newVal);
+			}
 		}
 		System.out.println();
+		System.out.println("\nINORDER:");
 		System.out.println(tree);
+		System.out.println("\nHIERARCHICAL:");
+		tree.printHierarchy();
 	}
 
 }
