@@ -158,7 +158,10 @@ public class AVLTree {
 	 * 
 	 */
 	private static int height(Node n) {
-		return n == null ? 0 : n.height;
+		if (n == null) {
+			return 0;
+		}
+		return 1+ Math.max(height(n.left), height(n.right));
 	}
 
 
