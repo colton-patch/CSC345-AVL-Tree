@@ -41,8 +41,25 @@ public class AVLTree {
 	 * true if it was deleted successfully.
 	 */
 	public boolean delete(Node root, int val) {
-		 // Only implement this if we have time
-		return true;
+		return deleteRecursive(root,val) != null;
+	}
+	
+	public Node deleteRecursive(Node root, int val) {
+		// value not found
+		if (root == null) 
+            return root; 
+        // traverse through left subtree 
+        if (val < root.val) 
+            root.left = deleteRecursive(root.left, val); 
+        // traverse through right subtree 
+        else if (val > root.val) 
+            root.left = deleteRecursive(root.right, val);
+        // value found
+        else {
+        	///TODO
+        }
+        checkIfUnbalanced(root);
+        return root;
 	}
 	
 	/**
