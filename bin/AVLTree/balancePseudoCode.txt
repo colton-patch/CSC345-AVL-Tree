@@ -1,0 +1,55 @@
+function balance(node)
+	if node == null 
+		return
+	end if
+	
+	leftHeight = node.left.height
+	rightHeight = node.right.height
+	
+	if leftHeight > rightHeight + 1
+		leftLeftHeight = node.left.left.height
+		leftRightHeight = node.left.right.height
+		
+		if leftLeftHeight >= leftRightHeight
+			rotateRight(node)
+		else
+			rotateLeft(z.left)
+			rotateRight(node)
+		end if
+	end if
+		
+	if rightHeight > leftHeight + 1
+		rightLeftHeight = node.right.left.height
+		rightRightHeight = node.right.right.height
+		
+		if rightRightHeight >= rightLeftHeight
+			rotateLeft(node)
+		else
+			rotateRight(node.right)
+			rotateLeft(node)
+		end if
+	end if
+	
+	return node
+end function
+
+
+function rotateRight(node) 
+	newRoot = node.left
+	node.left = newRoot.right
+	newRoot.right = node
+	computeHeight(node)
+	computeHeight(newRoot)
+	return newRoot
+end function
+
+function rotateLeft(node)
+	newRoot = node.right
+	node.right = newRoot.left
+	newRoot.left = node
+	computeHeight(node)
+	computeHeight(newRoot)
+	return newRoot
+end function
+			
+		

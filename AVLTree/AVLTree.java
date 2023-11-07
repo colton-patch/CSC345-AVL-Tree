@@ -40,7 +40,7 @@ public class AVLTree {
 	 * @return false if the value does not exist in the tree,
 	 * true if it was deleted successfully.
 	 */
-	public boolean delete(int val) {
+	public boolean delete(Node root, int val) {
 		 // Only implement this if we have time
 		return true;
 	}
@@ -97,7 +97,32 @@ public class AVLTree {
 		// Then balance node if necessary, setting the value
 		// of node to the new balanced version, then return
 		// node.
-		// TODO
+		computeHeight(node);	// update the height of the node
+		int balance = 0;
+		
+		if (node != null) {
+			balance = height(node.left) - height(node.right);	// retrieve balance factor
+		}
+		// heavier on left
+		if (balance > 1) {
+			// left node heavier on right
+	        if (height(node.left.left) - height(node.left.right) < 0) {
+	            // rotate the left node to the left
+	            node.left = rotateLeft(node.left);
+	        }
+	        // rotate the original node to the right
+	        return rotateRight(node);
+	    }
+		// heavier on right
+	    if (balance < -1) {
+	    	// right node heavier on left
+	        if (height(node.right.left) - height(node.right.right) > 0) {
+	            // rotate the right node to the right
+	            node.right = rotateRight(node.right);
+	        }
+	        // rotate the original node to the left
+	        return rotateLeft(node);
+	    }
 		return node;
 	}
 	
