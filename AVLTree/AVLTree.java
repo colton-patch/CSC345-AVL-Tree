@@ -56,7 +56,33 @@ public class AVLTree {
             root.left = deleteRecursive(root.right, val);
         // value found
         else {
-        	///TODO
+        	if (root.left == null || root.right == null) {
+        		Node temp = null;
+        		// one child on left
+        		if (root.left != null && root.right == null) {
+        			temp = root.left;
+        			root = temp;
+        		}
+        		// one child on right
+        		else if (root.left == null && root.right != null) {
+        			temp = root.right;
+        			root = temp;
+        		}
+        		// root is leaf node
+        		else {
+        			temp = root;
+        			root = null;
+        		}
+        	}
+        	else {
+        		Node current = root.right;
+        		while(current != null) {
+        			current = current.left;
+        		}
+        		Node temp = current;
+        		root.val = temp.val;
+        		root.right = deleteRecursive(root.right, temp.val);
+        	}
         }
         checkIfUnbalanced(root);
         return root;
