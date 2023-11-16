@@ -18,6 +18,15 @@ public class AVLTree {
 	    return searchRecursive(root, val);
 	}
 
+	/**
+	 * searchRecursive(Node node, int val) - Recursive helper
+	 * function for searching
+	 * 
+	 * @param node - current node
+	 * @param val - value to search for
+	 * @return boolean: true if the node with the given value is found,
+	 * false if not
+	 */
 	private boolean searchRecursive(Node node, int val) {
 	    if (node == null) {
 	        return false;
@@ -40,53 +49,60 @@ public class AVLTree {
 	 * @return false if the value does not exist in the tree,
 	 * true if it was deleted successfully.
 	 */
-	public boolean delete(Node root, int val) {
-		return deleteRecursive(root,val) != null;
+	public boolean delete(int val) {
+		return deleteRecursive(this.root, val) != null;
 	}
 	
+	/**
+	 * deleteRecursive(Node root, int val) - Recursive helper function
+	 * for deleting.
+	 * 
+	 * @param root - current node
+	 * @param val - value of node to delete
+	 * @return deleted node
+	 */
 	public Node deleteRecursive(Node root, int val) {
-		// value not found
-		if (root == null) 
-            return root; 
-        // traverse through left subtree 
-        if (val < root.val) 
-            root.left = deleteRecursive(root.left, val); 
-        // traverse through right subtree 
-        else if (val > root.val) 
-            root.left = deleteRecursive(root.right, val);
-        // value found
-        else {
-        	if (root.left == null || root.right == null) {
-        		Node temp = null;
-        		// one child on left
-        		if (root.left != null && root.right == null) {
-        			temp = root.left;
-        			root = temp;
-        		}
-        		// one child on right
-        		else if (root.left == null && root.right != null) {
-        			temp = root.right;
-        			root = temp;
-        		}
-        		// root is leaf node
-        		else {
-        			temp = root;
-        			root = null;
-        		}
-        	}
-        	else {
-        		Node current = root.right;
-        		while(current != null) {
+	    // value not found
+	    if (!search(val)) {
+	        return null; 
+	    }
+
+	    // traverse through left subtree 
+	    if (val < root.val) 
+	        root.left = deleteRecursive(root.left, val); 
+	    // traverse through right subtree 
+	    else if (val > root.val) 
+	        root.right = deleteRecursive(root.right, val);
+	    // value found
+	    else {
+	        if (root.left == null || root.right == null) {
+	            Node temp = (root.left != null) ? root.left : root.right;
+	            
+	            // If the node has one child
+	            if (temp != null) {
+	                root.val = temp.val;
+	                root.left = temp.left;
+	                root.right = temp.right;
+	            } else {
+	                // Node is a leaf node
+	                root = null;
+	            }
+	        } else {
+	            // Node has two children
+	        	Node current = root.right;
+        		while(current.left != null) {
         			current = current.left;
         		}
         		Node temp = current;
         		root.val = temp.val;
         		root.right = deleteRecursive(root.right, temp.val);
-        	}
-        }
-        checkIfUnbalanced(root);
-        return root;
+	        	
+	        }
+	    }
+
+	    return checkIfUnbalanced(root);
 	}
+
 	
 	/**
 	 * insert(int newVal) -Inserts a new value into its correct 
@@ -135,6 +151,10 @@ public class AVLTree {
 	 * @param node - the root of the subtree to check
 	 */
 	private static Node checkIfUnbalanced(Node node) {
+		if (node == null) {
+		    return null;
+		}
+		
 		// update the height of the node
 		computeHeight(node);
 		return balance(node);
@@ -257,7 +277,7 @@ public class AVLTree {
     		return;
     	}
         for (int i = 0; i < depth; i++) {
-            System.out.print("  ");
+            System.out.print("|  ");
         }
         System.out.println(node.val);
 
