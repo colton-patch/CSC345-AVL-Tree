@@ -9,6 +9,9 @@ public class AVLTreeTest {
 		test5(); // Insert 10 values and delete
 	}
 	
+	/*
+	 * Inserts 10 random values in the tree and prints the results
+	 */
 	private static void test1() {
 		System.out.println("+------+");
 		System.out.println(" TEST 1");
@@ -27,6 +30,9 @@ public class AVLTreeTest {
 		printResults(tree);
 	}
 	
+	/*
+	 * Inserts 50 random values in the tree and prints the results
+	 */
 	private static void test2() {
 		System.out.println("+------+");
 		System.out.println(" TEST 2");
@@ -45,6 +51,9 @@ public class AVLTreeTest {
 		printResults(tree);
 	}
 	
+	/*
+	 * Inserts 20 values from 0 to 19 in order into the tree and prints the results
+	 */
 	private static void test3() {
 		System.out.println("+------+");
 		System.out.println(" TEST 3");
@@ -60,6 +69,10 @@ public class AVLTreeTest {
 		printResults(tree);
 	}
 	
+	/*
+	 * Inserts numbers 0-9 into the tree then searches for 3, 5, 8, and 100.
+	 * Prints true if the number is found, false if not.
+	 */
 	private static void test4() {
 		System.out.println("+------+");
 		System.out.println(" TEST 4");
@@ -82,6 +95,11 @@ public class AVLTreeTest {
 		System.out.println(tree.search(100) + "\n\n");
 	}
 	
+	/*
+	 * Inserts numbers 0-9 into the tree then tries to delete
+	 * 5, 0, 9, and 100. If a number is successfully deleted, it prints
+	 * true then prints the tree. If not, prints false.
+	 */
 	private static void test5() {
 		System.out.println("+------+");
 		System.out.println(" TEST 5");
@@ -108,6 +126,9 @@ public class AVLTreeTest {
 		System.out.println(tree.delete(100));;
 	}
 	
+	/*
+	 * Prints the given tree in an inorder format and in a hierarchical format
+	 */
 	private static void printResults(AVLTree tree) {
 		System.out.println();
 		System.out.println("\nINORDER:");
