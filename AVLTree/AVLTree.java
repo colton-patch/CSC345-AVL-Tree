@@ -1,4 +1,11 @@
-
+/**
+ * AVLTree
+ * Authors: Colton Patch, Brenda Coutino, Femor Garfo
+ * A self-balancing binary search tree, that balances itself by checking if any node's
+ * left and right subtrees differ in height by more than one, and rotating the necessary
+ * nodes if they do. 
+ * 
+ */
 public class AVLTree {
 	private Node root;
 	
